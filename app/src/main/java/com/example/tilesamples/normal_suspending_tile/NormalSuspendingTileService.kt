@@ -1,4 +1,4 @@
-package com.example.tilesamples.tile
+package com.example.tilesamples.normal_suspending_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -26,7 +26,7 @@ private const val RESOURCES_VERSION = "0"
  * Skeleton for a tile with no images.
  */
 @OptIn(ExperimentalHorologistApi::class)
-class MainTileService : SuspendingTileService() {
+class NormalSuspendingTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
         requestParams: RequestBuilders.ResourcesRequest
