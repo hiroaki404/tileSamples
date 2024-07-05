@@ -1,0 +1,28 @@
+# IntelliJ
+*.iml
+.idea/*
+
+# keep the code styles
+!/.idea/codeStyles
+/.idea/codeStyles/*
+!/.idea/codeStyles/Project.xml
+!/.idea/codeStyles/codeStyleConfig.xml
+
+# generated files
+build/
+gen/
+out/
+*.apk
+
+# Gradle cache
+.gradle
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx
+
+local.properties
+
+# Windows thumbnail db
+.DS_Store
