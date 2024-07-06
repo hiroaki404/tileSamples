@@ -47,7 +47,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.play.services.wearable)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -58,6 +57,8 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.core.splashscreen)
     implementation(libs.tiles)
+    implementation(libs.tiles.tooling)
+    implementation(libs.tiles.tooling.preview)
     implementation(libs.androidx.protolayout)
     implementation(libs.androidx.protolayout.material)
     implementation(libs.androidx.protolayout.expression)
