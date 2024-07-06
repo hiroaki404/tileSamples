@@ -11,5 +11,6 @@
     <string name="refresh_tile_label">Refresh</string>
     <string name="request_update_tile_label">Request Update</string>
     <string name="use_minimum_renderer_tile_label">Use Minimum Renderer</string>
+    <string name="use_renderer_with_image_resource">Use Renderer with Image Resource</string>
     <string name="complication_label">Example complication</string>
 </resources>
