@@ -7,5 +7,6 @@
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
     <string name="normal_suspending_tile_label">Normal Suspending</string>
     <string name="count_up_tile_label">Count Up</string>
+    <string name="periodic_update_tile_label">Periodic Update</string>
     <string name="complication_label">Example complication</string>
 </resources>
