@@ -3,18 +3,16 @@ package com.example.tilesamples.tiles.use_renderer_with_image_resource
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
-import com.example.tilesamples.tiles.use_minimum_renderer.SimpleTileRenderer
-import com.example.tilesamples.tiles.use_minimum_renderer.SimpleTileState
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 
 @OptIn(ExperimentalHorologistApi::class)
 class UseRendererWithImageResourceTileService: SuspendingTileService() {
-    private lateinit var renderer: SimpleTileRenderer
+    private lateinit var renderer: StandardTileRenderer
 
     override fun onCreate() {
         super.onCreate()
-        renderer = SimpleTileRenderer(this)
+        renderer = StandardTileRenderer(this)
     }
 
     override suspend fun resourcesRequest(
