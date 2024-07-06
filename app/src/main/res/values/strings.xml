@@ -5,6 +5,10 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
-    <string name="tile_label">Example tile</string>
+    <string name="normal_suspending_tile_label">Normal Suspending</string>
+    <string name="count_up_tile_label">Count Up</string>
+    <string name="periodic_update_tile_label">Periodic Update</string>
+    <string name="refresh_tile_label">Refresh</string>
+    <string name="request_update_tile_label">Request Update</string>
     <string name="complication_label">Example complication</string>
 </resources>
