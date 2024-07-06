@@ -6,6 +6,7 @@ import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
 import coil.Coil
 import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 import kotlinx.coroutines.async
@@ -30,6 +31,10 @@ class UseRendererWithImageResourceTileService: SuspendingTileService() {
                 Coil.imageLoader(this@UseRendererWithImageResourceTileService).run {
                     val request = ImageRequest.Builder(this@UseRendererWithImageResourceTileService)
                         .data(imageUrl)
+                        .size(64)
+                        .allowRgb565(true)
+                        .transformations(CircleCropTransformation())
+                        .allowHardware(false)
                         .build()
                     val result = execute(request)
                     (result.drawable as? BitmapDrawable)?.bitmap
