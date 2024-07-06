@@ -9,7 +9,6 @@ wearToolingPreview = "1.0.0"
 activityCompose = "1.9.0"
 coreSplashscreen = "1.0.1"
 tiles = "1.3.0"
-tilesMaterial = "1.1.0"
 horologistComposeTools = "0.6.9"
 horologistTiles = "0.6.9"
 watchfaceComplicationsDataSourceKtx = "1.2.1"
@@ -30,6 +29,8 @@ wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview",
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "tiles" }
+tiles-tooling = { group = "androidx.wear.tiles", name = "tiles-tooling", version.ref = "tiles" }
+tiles-tooling-preview = { group = "androidx.wear.tiles", name = "tiles-tooling-preview", version.ref = "tiles" }
 androidx-protolayout = { group = "androidx.wear.protolayout", name = "protolayout", version.ref = "protoLayout" }
 androidx-protolayout-material = { group = "androidx.wear.protolayout", name = "protolayout-material", version.ref = "protoLayout" }
 androidx-protolayout-expression = { group = "androidx.wear.protolayout", name = "protolayout-expression", version.ref = "protoLayout" }
