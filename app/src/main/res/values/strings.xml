@@ -5,12 +5,12 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
-    <string name="normal_suspending_tile_label">Normal Suspending</string>
+    <string name="normal_suspending_tile_label">Hello World</string>
     <string name="count_up_tile_label">Count Up</string>
-    <string name="periodic_update_tile_label">Periodic Update</string>
+    <string name="periodic_update_tile_label">multi timelineEntry</string>
     <string name="refresh_tile_label">Refresh</string>
     <string name="request_update_tile_label">Request Update</string>
-    <string name="use_minimum_renderer_tile_label">Use Minimum Renderer</string>
-    <string name="use_renderer_with_image_resource">Use Renderer with Image Resource</string>
+    <string name="use_minimum_renderer_tile_label">Renderer</string>
+    <string name="use_renderer_with_image_resource">Image Resource</string>
     <string name="complication_label">Example complication</string>
 </resources>
