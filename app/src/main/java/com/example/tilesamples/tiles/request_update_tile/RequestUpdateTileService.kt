@@ -29,9 +29,6 @@ import java.util.Calendar
 
 private const val RESOURCES_VERSION = "0"
 
-/**
- * Skeleton for a tile with no images.
- */
 @OptIn(ExperimentalHorologistApi::class)
 class RequestUpdateTileService : SuspendingTileService() {
 
