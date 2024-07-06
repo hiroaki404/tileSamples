@@ -3,6 +3,7 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -101,6 +102,20 @@
             android:name="com.example.tilesamples.tiles.use_minimum_renderer.UseMinimumRendererTileService"
             android:exported="true"
             android:label="@string/use_minimum_renderer_tile_label"
+            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
+            <intent-filter>
+                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="androidx.wear.tiles.PREVIEW"
+                android:resource="@drawable/tile_preview" />
+        </service>
+
+        <service
+            android:name="com.example.tilesamples.tiles.use_renderer_with_image_resource.UseRendererWithImageResourceTileService"
+            android:exported="true"
+            android:label="@string/use_renderer_with_image_resource"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />

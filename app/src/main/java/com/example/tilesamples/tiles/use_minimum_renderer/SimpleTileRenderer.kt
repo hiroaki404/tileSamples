@@ -1,19 +1,16 @@
 package com.example.tilesamples.tiles.use_minimum_renderer
 
 import android.content.Context
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.wear.protolayout.ColorBuilders.argb
-import androidx.wear.protolayout.DeviceParametersBuilders
+import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
+import androidx.wear.tiles.tooling.preview.Preview
+import androidx.wear.tiles.tooling.preview.TilePreviewData
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.tools.TileLayoutPreview
-import com.google.android.horologist.compose.tools.WearPreview
-import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.render.SingleTileLayoutRenderer
 
 data class SimpleTileState(
@@ -24,13 +21,13 @@ data class SimpleTileState(
 class SimpleTileRenderer(context: Context): SingleTileLayoutRenderer<SimpleTileState, Unit>(context) {
     override fun renderTile(
         state: SimpleTileState,
-        deviceParameters: DeviceParametersBuilders.DeviceParameters
+        deviceParameters: DeviceParameters
     ): LayoutElementBuilders.LayoutElement {
-        return tileLayout(state)
+        return tileLayout(state, deviceParameters)
     }
 
-    private fun tileLayout(state: SimpleTileState): LayoutElementBuilders.LayoutElement {
-        return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
+    private fun tileLayout(state: SimpleTileState, deviceParameters: DeviceParameters): LayoutElementBuilders.LayoutElement {
+        return PrimaryLayout.Builder(deviceParameters)
             .setContent(
                 Text.Builder(context, state.text)
                     .setColor(argb(Colors.DEFAULT.onSurface))
@@ -40,16 +37,13 @@ class SimpleTileRenderer(context: Context): SingleTileLayoutRenderer<SimpleTileS
     }
 }
 
-@OptIn(ExperimentalHorologistApi::class)
-@WearPreview
-@Composable
-fun SimpleTileRendererPreview() {
+@Preview
+fun simpleTileRendererPreview(context: Context): TilePreviewData {
     val state = SimpleTileState("Hello World!")
-    val context = LocalContext.current
 
-    TileLayoutPreview(
-        state = state,
-        resourceState = Unit,
-        renderer = SimpleTileRenderer(context)
-    )
+    val renderer = SimpleTileRenderer(context)
+
+    return TilePreviewData { tileRequest ->
+        renderer.renderTimeline(state, tileRequest)
+    }
 }
