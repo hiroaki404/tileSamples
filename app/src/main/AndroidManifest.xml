@@ -39,7 +39,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/normal_suspending_tile" />
         </service>
 
         <service
@@ -53,7 +53,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/dynamic_expression_tile" />
         </service>
 
         <service
@@ -67,7 +67,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/periodic_update_tile" />
         </service>
 
         <service
@@ -81,7 +81,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/refresh_tile" />
         </service>
 
         <service
@@ -95,7 +95,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/refresh_tile" />
         </service>
 
         <service
@@ -109,7 +109,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/normal_suspending_tile" />
         </service>
 
         <service
@@ -123,7 +123,7 @@
 
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
-                android:resource="@drawable/tile_preview" />
+                android:resource="@drawable/use_render_with_image_resource_tile" />
         </service>
 
         <uses-library
