@@ -1,17 +1,16 @@
-package com.example.tilesamples.normal_suspending_tile
+package com.example.tilesamples.tiles.dynamic_expression_tile_service
 
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.protolayout.TimelineBuilders
-import androidx.wear.protolayout.material.Colors
+import androidx.wear.protolayout.TypeBuilders
+import androidx.wear.protolayout.expression.DynamicBuilders.DynamicInstant
 import androidx.wear.protolayout.material.Text
-import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
@@ -19,14 +18,12 @@ import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.LayoutRootPreview
 import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.SuspendingTileService
+import java.time.Instant
 
 private const val RESOURCES_VERSION = "0"
 
-/**
- * Skeleton for a tile with no images.
- */
 @OptIn(ExperimentalHorologistApi::class)
-class NormalSuspendingTileService : SuspendingTileService() {
+class DynamicExpressionTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
         requestParams: RequestBuilders.ResourcesRequest
@@ -49,12 +46,21 @@ class NormalSuspendingTileService : SuspendingTileService() {
 }
 
 private fun tileLayout(context: Context): LayoutElementBuilders.LayoutElement {
+    val time = DynamicInstant.withSecondsPrecision(Instant.EPOCH)
+        .durationUntil(DynamicInstant.platformTimeWithSecondsPrecision())
+        .secondsPart
+        .asFloat()
+
     return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
         .setContent(
-            Text.Builder(context, "Hello World!")
-                .setColor(argb(Colors.DEFAULT.onSurface))
-                .setTypography(Typography.TYPOGRAPHY_CAPTION1)
-                .build()
+            Text.Builder(
+                context,
+                TypeBuilders.StringProp.Builder("00")
+                    .setDynamicValue(time.format())
+                    .build(),
+                TypeBuilders.StringLayoutConstraint.Builder("00")
+                    .build()
+            ).build()
         ).build()
 }
 

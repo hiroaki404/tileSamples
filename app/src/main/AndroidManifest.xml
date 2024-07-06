@@ -28,7 +28,7 @@
                 android:value="0" />
         </service>
         <service
-            android:name=".normal_suspending_tile.NormalSuspendingTileService"
+            android:name="com.example.tilesamples.tiles.normal_suspending_tile.NormalSuspendingTileService"
             android:exported="true"
             android:label="@string/normal_suspending_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -42,7 +42,7 @@
         </service>
 
         <service
-            android:name=".dynamic_expression_tile_service.DynamicExpressionTileService"
+            android:name="com.example.tilesamples.tiles.dynamic_expression_tile_service.DynamicExpressionTileService"
             android:exported="true"
             android:label="@string/count_up_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">

@@ -1,4 +1,4 @@
-package com.example.tilesamples.dynamic_expression_tile_service
+package com.example.tilesamples.tiles.normal_suspending_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -9,8 +9,6 @@ import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.protolayout.TimelineBuilders
-import androidx.wear.protolayout.TypeBuilders
-import androidx.wear.protolayout.expression.DynamicBuilders.DynamicInstant
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
@@ -21,12 +19,14 @@ import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.LayoutRootPreview
 import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.SuspendingTileService
-import java.time.Instant
 
 private const val RESOURCES_VERSION = "0"
 
+/**
+ * Skeleton for a tile with no images.
+ */
 @OptIn(ExperimentalHorologistApi::class)
-class DynamicExpressionTileService : SuspendingTileService() {
+class NormalSuspendingTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
         requestParams: RequestBuilders.ResourcesRequest
@@ -49,21 +49,12 @@ class DynamicExpressionTileService : SuspendingTileService() {
 }
 
 private fun tileLayout(context: Context): LayoutElementBuilders.LayoutElement {
-    val time = DynamicInstant.withSecondsPrecision(Instant.EPOCH)
-        .durationUntil(DynamicInstant.platformTimeWithSecondsPrecision())
-        .secondsPart
-        .asFloat()
-
     return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
         .setContent(
-            Text.Builder(
-                context,
-                TypeBuilders.StringProp.Builder("00")
-                    .setDynamicValue(time.format())
-                    .build(),
-                TypeBuilders.StringLayoutConstraint.Builder("00")
-                    .build()
-            ).build()
+            Text.Builder(context, "Hello World!")
+                .setColor(argb(Colors.DEFAULT.onSurface))
+                .setTypography(Typography.TYPOGRAPHY_CAPTION1)
+                .build()
         ).build()
 }
 
