@@ -12,5 +12,6 @@
     <string name="request_update_tile_label">Request Update</string>
     <string name="use_minimum_renderer_tile_label">Renderer</string>
     <string name="use_renderer_with_image_resource">Image Resource</string>
+    <string name="glance_tile_label">Glance</string>
     <string name="complication_label">Example complication</string>
 </resources>
