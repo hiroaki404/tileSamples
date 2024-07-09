@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.use_renderer_with_image_resource
+package com.example.tilesamples.tiles.renderer.use_renderer_with_image_resource
 
 import android.graphics.drawable.BitmapDrawable
 import androidx.wear.protolayout.ResourceBuilders

@@ -29,7 +29,7 @@
                 android:value="0" />
         </service>
         <service
-            android:name="com.example.tilesamples.tiles.normal_suspending_tile.NormalSuspendingTileService"
+            android:name="com.example.tilesamples.tiles.simple_tile.normal_suspending_tile.NormalSuspendingTileService"
             android:exported="true"
             android:label="@string/normal_suspending_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -43,7 +43,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.dynamic_expression_tile_service.DynamicExpressionTileService"
+            android:name="com.example.tilesamples.tiles.update_tile.dynamic_expression_tile_service.DynamicExpressionTileService"
             android:exported="true"
             android:label="@string/count_up_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -57,7 +57,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.periodic_update_tile.PeriodicUpdateTileService"
+            android:name="com.example.tilesamples.tiles.update_tile.periodic_update_tile.PeriodicUpdateTileService"
             android:exported="true"
             android:label="@string/periodic_update_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -71,7 +71,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.refresh_tile.RefreshTileService"
+            android:name="com.example.tilesamples.tiles.update_tile.refresh_tile.RefreshTileService"
             android:exported="true"
             android:label="@string/refresh_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -85,7 +85,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.request_update_tile.RequestUpdateTileService"
+            android:name="com.example.tilesamples.tiles.update_tile.request_update_tile.RequestUpdateTileService"
             android:exported="true"
             android:label="@string/request_update_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -99,7 +99,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.use_minimum_renderer.UseMinimumRendererTileService"
+            android:name="com.example.tilesamples.tiles.renderer.use_minimum_renderer.UseMinimumRendererTileService"
             android:exported="true"
             android:label="@string/use_minimum_renderer_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -113,7 +113,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.use_renderer_with_image_resource.UseRendererWithImageResourceTileService"
+            android:name="com.example.tilesamples.tiles.renderer.use_renderer_with_image_resource.UseRendererWithImageResourceTileService"
             android:exported="true"
             android:label="@string/use_renderer_with_image_resource"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
@@ -127,7 +127,7 @@
         </service>
 
         <service
-            android:name="com.example.tilesamples.tiles.glance_tile.MyGlanceTileService"
+            android:name="com.example.tilesamples.tiles.simple_tile.glance_tile.MyGlanceTileService"
             android:exported="true"
             android:label="@string/glance_tile_label"
             android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">

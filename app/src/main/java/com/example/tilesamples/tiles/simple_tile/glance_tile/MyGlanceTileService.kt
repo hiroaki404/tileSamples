@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.glance_tile
+package com.example.tilesamples.tiles.simple_tile.glance_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable

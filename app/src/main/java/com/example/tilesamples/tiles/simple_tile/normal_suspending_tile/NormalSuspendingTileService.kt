@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.normal_suspending_tile
+package com.example.tilesamples.tiles.simple_tile.normal_suspending_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable
