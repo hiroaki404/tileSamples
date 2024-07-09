@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.horologist.tiles)
     implementation(libs.coil)
     implementation(libs.watchface.complications.data.source.ktx)
+    implementation(libs.glance.wear.tiles)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
