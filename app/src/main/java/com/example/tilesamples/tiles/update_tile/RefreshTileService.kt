@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.update_tile.refresh_tile
+package com.example.tilesamples.tiles.update_tile
 
 import android.content.Context
 import android.util.Log
@@ -76,6 +76,6 @@ private fun tileLayout(context: Context): LayoutElementBuilders.LayoutElement {
     showBackground = true
 )
 @Composable
-fun TilePreview() {
+fun RefreshTilePreview() {
     LayoutRootPreview(root = tileLayout(LocalContext.current))
 }
