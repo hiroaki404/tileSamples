@@ -4,9 +4,6 @@
 
 # keep the code styles
 !/.idea/codeStyles
-/.idea/codeStyles/*
-!/.idea/codeStyles/Project.xml
-!/.idea/codeStyles/codeStyleConfig.xml
 
 # generated files
 build/
@@ -15,7 +12,7 @@ out/
 *.apk
 
 # Gradle cache
-.gradle
+.gradle/
 
 # Android Studio generated files and folders
 captures/
