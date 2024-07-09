@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.use_minimum_renderer
+package com.example.tilesamples.tiles.renderer.use_minimum_renderer
 
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.tiles.RequestBuilders

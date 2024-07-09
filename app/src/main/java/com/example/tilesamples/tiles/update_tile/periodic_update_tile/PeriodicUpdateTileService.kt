@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.periodic_update_tile
+package com.example.tilesamples.tiles.update_tile.periodic_update_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable

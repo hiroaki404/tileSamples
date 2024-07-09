@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.refresh_tile
+package com.example.tilesamples.tiles.update_tile.request_update_tile
 
 import android.content.Context
 import android.util.Log
@@ -10,30 +10,49 @@ import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.protolayout.TimelineBuilders
-import androidx.wear.protolayout.expression.DynamicBuilders.DynamicInstant
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
+import androidx.wear.tiles.EventBuilders
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.LayoutRootPreview
 import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.SuspendingTileService
-import java.time.Instant
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.Calendar
-import kotlin.text.Typography.less
 
 private const val RESOURCES_VERSION = "0"
 
 @OptIn(ExperimentalHorologistApi::class)
-class RefreshTileService : SuspendingTileService() {
+class RequestUpdateTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
         requestParams: RequestBuilders.ResourcesRequest
     ): ResourceBuilders.Resources {
         return ResourceBuilders.Resources.Builder().setVersion(RESOURCES_VERSION).build()
+    }
+
+    override fun onTileAddEvent(requestParams: EventBuilders.TileAddEvent) {
+        // In a production app, you should not use GlobalScope. Instead, use WorkManager and so on.
+        GlobalScope.launch {
+            repeat(10) {
+                // you can request a refresh from any place in your application code
+                // you should not update your tile more frequently than once a minute
+                // If you specify an interval of less than 1 minute,
+                // updates may occur within that timeframe, but the actual update interval may be longer than the specified value.
+                getUpdater(this@RequestUpdateTileService).requestUpdate(RequestUpdateTileService::class.java)
+                delay(60 * 1000)
+            }
+            cancel()
+        }
+
+        super.onTileAddEvent(requestParams)
     }
 
     override suspend fun tileRequest(
@@ -47,12 +66,7 @@ class RefreshTileService : SuspendingTileService() {
         ).build()
 
         return TileBuilders.Tile.Builder().setResourcesVersion(RESOURCES_VERSION)
-            .setTileTimeline(singleTileTimeline)
-            // you should not update your tile more frequently than once a minute
-            // If you specify an interval of less than 1 minute,
-            // updates may occur within that timeframe, but the actual update interval may be longer than the specified value.
-            .setFreshnessIntervalMillis(60 * 1000)
-            .build()
+            .setTileTimeline(singleTileTimeline).build()
     }
 }
 
