@@ -140,6 +140,19 @@
                 android:resource="@drawable/glance_tile" />
         </service>
 
+        <service
+            android:name="com.example.tilesamples.tiles.layout_tile.LayoutTileService"
+            android:exported="true"
+            android:label="@string/layout_tile_label"
+            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
+            <intent-filter>
+                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="androidx.wear.tiles.PREVIEW"
+                android:resource="@drawable/layout_tile" />
+        </service>
 
         <uses-library
             android:name="com.google.android.wearable"

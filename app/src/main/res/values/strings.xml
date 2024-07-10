@@ -13,5 +13,6 @@
     <string name="use_minimum_renderer_tile_label">Renderer</string>
     <string name="use_renderer_with_image_resource">Image Resource</string>
     <string name="glance_tile_label">Glance</string>
+    <string name="layout_tile_label">Layout</string>
     <string name="complication_label">Example complication</string>
 </resources>
