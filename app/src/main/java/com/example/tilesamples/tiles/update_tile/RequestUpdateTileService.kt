@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.request_update_tile
+package com.example.tilesamples.tiles.update_tile
 
 import android.content.Context
 import android.util.Log

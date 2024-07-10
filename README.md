@@ -49,6 +49,16 @@ It seems better to stick to simple tiles or experimental use for now. If you hav
 ![glance_tile](https://github.com/hiroaki404/tileSamples/assets/48251111/6f8ce8e0-7418-4e78-ae89-676c823130bf)
 
 
+### LayoutTileService
+catalog of layouts.
+It's generally recommended to refer to the official WearTilesKotlin samples.
+
+[wear\-os\-samples/WearTilesKotlin at 55ce215ca7358f9120a7123561891b64a703a0d7 · android/wear\-os\-samples](https://github.com/android/wear-os-samples/tree/55ce215ca7358f9120a7123561891b64a703a0d7/WearTilesKotlin)
+[wear\-os\-samples/WearTilesKotlin/app/src/debug/java/com/example/wear/tiles/golden at 55ce215ca7358f9120a7123561891b64a703a0d7 · android/wear\-os\-samples](https://github.com/android/wear-os-samples/tree/55ce215ca7358f9120a7123561891b64a703a0d7/WearTilesKotlin/app/src/debug/java/com/example/wear/tiles/golden)
+
+![layout](https://github.com/hiroaki404/tileSamples/assets/48251111/83a5d5f3-afb2-4b04-8415-f76d353b9231)
+
+
 ## official samples
 - [android/codelab\-wear\-tiles](https://github.com/android/codelab-wear-tiles)
 - [wear\-os\-samples/WearTilesKotlin at main · android/wear\-os\-samples](https://github.com/android/wear-os-samples/tree/main/WearTilesKotlin)
