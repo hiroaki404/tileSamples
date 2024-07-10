@@ -1,4 +1,4 @@
-package com.example.tilesamples.tiles.periodic_update_tile
+package com.example.tilesamples.tiles.update_tile
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -117,6 +117,6 @@ private fun tileLayoutElement(
     showBackground = true
 )
 @Composable
-fun TilePreview() {
+fun PeriodicUpdateTilePreview() {
     LayoutRootPreview(root = tileLayoutElement(LocalContext.current))
 }
