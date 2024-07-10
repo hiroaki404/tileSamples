@@ -3,6 +3,7 @@ package com.example.tilesamples.tiles.layout_tile.layout_catalog
 import android.content.Context
 import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
+import androidx.wear.protolayout.DimensionBuilders
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ModifiersBuilders
 import androidx.wear.protolayout.material.Chip
@@ -18,13 +19,22 @@ import com.example.tilesamples.tiles.layout_tile.createTile
 val simpleLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
     PrimaryLayout.Builder(deviceParameters)
         .setContent(
-            Chip.Builder(context, ModifiersBuilders.Clickable.Builder().build(), deviceParameters)
-                .setPrimaryLabelContent("Primary Chip")
+            Chip.Builder(
+                context,
+                ModifiersBuilders.Clickable.Builder().build(),
+                deviceParameters
+            )
+                .setWidth(DimensionBuilders.expand())
+                .setPrimaryLabelContent("Content")
                 .build()
         )
         .setPrimaryChipContent(
-            CompactChip.Builder(context, "text", ModifiersBuilders.Clickable.Builder().build(), deviceParameters)
-                .build()
+            CompactChip.Builder(
+                context,
+                "pChip",
+                ModifiersBuilders.Clickable.Builder().build(),
+                deviceParameters
+            ).build()
         )
         .setPrimaryLabelTextContent(
             Text.Builder(context, "Primary Label Text")
