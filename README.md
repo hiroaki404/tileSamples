@@ -49,9 +49,10 @@ It seems better to stick to simple tiles or experimental use for now. If you hav
 ![glance_tile](https://github.com/hiroaki404/tileSamples/assets/48251111/6f8ce8e0-7418-4e78-ae89-676c823130bf)
 
 
-### LayoutTileService
+### LayoutTileService and click action
 catalog of layouts.
 It's generally recommended to refer to the official WearTilesKotlin samples.
+The layout switches when click on it.
 
 [wear\-os\-samples/WearTilesKotlin at main · android/wear\-os\-samples](https://github.com/android/wear-os-samples/tree/main/WearTilesKotlin)
 [wear\-os\-samples/WearTilesKotlin/app/src/debug/java/com/example/wear/tiles/golden at main · android/wear\-os\-samples](https://github.com/android/wear-os-samples/tree/main/WearTilesKotlin/app/src/debug/java/com/example/wear/tiles/golden)
