@@ -1,12 +1,6 @@
 package com.example.tilesamples.tiles.layout_tile
 
-import android.content.Context
-import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
-import androidx.wear.protolayout.LayoutElementBuilders.Layout
-import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ResourceBuilders.Resources
-import androidx.wear.protolayout.TimelineBuilders.Timeline
-import androidx.wear.protolayout.TimelineBuilders.TimelineEntry
 import androidx.wear.tiles.RequestBuilders.ResourcesRequest
 import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders.Tile
@@ -15,6 +9,7 @@ import com.example.tilesamples.tiles.layout_tile.layout_catalog.mergedLayout
 import com.example.tilesamples.tiles.layout_tile.layout_catalog.multiButtonLayout
 import com.example.tilesamples.tiles.layout_tile.layout_catalog.multiSlotLayout
 import com.example.tilesamples.tiles.layout_tile.layout_catalog.simpleLayout
+import com.example.tilesamples.tiles.util.createTile
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 
@@ -47,17 +42,3 @@ class LayoutTileService : SuspendingTileService() {
     }
 }
 
-fun createTile(
-    context: Context,
-    deviceParameters: DeviceParameters,
-    layout: (Context, DeviceParameters) -> LayoutElement
-): Tile {
-    val timeline = Timeline.Builder().addTimelineEntry(
-        TimelineEntry.Builder().setLayout(
-            Layout.Builder().setRoot(layout(context, deviceParameters)).build()
-        ).build()
-    ).build()
-
-    return Tile.Builder().setResourcesVersion(RESOURCES_VERSION)
-        .setTileTimeline(timeline).build()
-}

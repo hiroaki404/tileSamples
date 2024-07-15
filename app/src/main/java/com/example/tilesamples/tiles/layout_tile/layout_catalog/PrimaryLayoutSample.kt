@@ -18,7 +18,7 @@ import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
 import com.example.tilesamples.tiles.layout_tile.MULTI_SLOT_LAYOUT
-import com.example.tilesamples.tiles.layout_tile.createTile
+import com.example.tilesamples.tiles.util.createTile
 
 val simpleLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
     Box.Builder()
