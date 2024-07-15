@@ -5,9 +5,10 @@ import androidx.wear.protolayout.ActionBuilders
 import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.DimensionBuilders
-import androidx.wear.protolayout.LayoutElementBuilders
+import androidx.wear.protolayout.LayoutElementBuilders.Box
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
-import androidx.wear.protolayout.ModifiersBuilders
+import androidx.wear.protolayout.ModifiersBuilders.Clickable
+import androidx.wear.protolayout.ModifiersBuilders.Modifiers
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
@@ -18,11 +19,11 @@ import com.example.tilesamples.tiles.layout_tile.EDGE_CONTENT_LAYOUT
 import com.example.tilesamples.tiles.layout_tile.createTile
 
 val mergedLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
-    LayoutElementBuilders.Box.Builder()
+    Box.Builder()
         .setModifiers(
-            ModifiersBuilders.Modifiers.Builder()
+            Modifiers.Builder()
                 .setClickable(
-                    ModifiersBuilders.Clickable.Builder()
+                    Clickable.Builder()
                         .setId(EDGE_CONTENT_LAYOUT)
                         .setOnClick(ActionBuilders.LoadAction.Builder().build())
                         .build()

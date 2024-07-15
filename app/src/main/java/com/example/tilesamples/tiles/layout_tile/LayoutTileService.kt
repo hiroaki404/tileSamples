@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.LayoutElementBuilders.Layout
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
-import androidx.wear.protolayout.ResourceBuilders
-import androidx.wear.protolayout.TimelineBuilders
-import androidx.wear.tiles.RequestBuilders
+import androidx.wear.protolayout.ResourceBuilders.Resources
+import androidx.wear.protolayout.TimelineBuilders.Timeline
+import androidx.wear.protolayout.TimelineBuilders.TimelineEntry
+import androidx.wear.tiles.RequestBuilders.ResourcesRequest
+import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders.Tile
 import com.example.tilesamples.tiles.layout_tile.layout_catalog.edgeContentLayout
 import com.example.tilesamples.tiles.layout_tile.layout_catalog.mergedLayout
@@ -26,13 +28,13 @@ internal const val EDGE_CONTENT_LAYOUT = "edgeContentLayout"
 @OptIn(ExperimentalHorologistApi::class)
 class LayoutTileService : SuspendingTileService() {
     override suspend fun resourcesRequest(
-        requestParams: RequestBuilders.ResourcesRequest
-    ): ResourceBuilders.Resources {
-        return ResourceBuilders.Resources.Builder().setVersion(RESOURCES_VERSION).build()
+        requestParams: ResourcesRequest
+    ): Resources {
+        return Resources.Builder().setVersion(RESOURCES_VERSION).build()
     }
 
     override suspend fun tileRequest(
-        requestParams: RequestBuilders.TileRequest
+        requestParams: TileRequest
     ): Tile {
         val deviceConfiguration = requestParams.deviceConfiguration
         return when (requestParams.currentState.lastClickableId) {
@@ -50,8 +52,8 @@ fun createTile(
     deviceParameters: DeviceParameters,
     layout: (Context, DeviceParameters) -> LayoutElement
 ): Tile {
-    val timeline = TimelineBuilders.Timeline.Builder().addTimelineEntry(
-        TimelineBuilders.TimelineEntry.Builder().setLayout(
+    val timeline = Timeline.Builder().addTimelineEntry(
+        TimelineEntry.Builder().setLayout(
             Layout.Builder().setRoot(layout(context, deviceParameters)).build()
         ).build()
     ).build()

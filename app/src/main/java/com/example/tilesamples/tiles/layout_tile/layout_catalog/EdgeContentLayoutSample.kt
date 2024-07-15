@@ -5,9 +5,10 @@ import androidx.wear.protolayout.ActionBuilders
 import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.DimensionBuilders
-import androidx.wear.protolayout.LayoutElementBuilders
+import androidx.wear.protolayout.LayoutElementBuilders.Box
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
-import androidx.wear.protolayout.ModifiersBuilders
+import androidx.wear.protolayout.ModifiersBuilders.Clickable
+import androidx.wear.protolayout.ModifiersBuilders.Modifiers
 import androidx.wear.protolayout.material.CircularProgressIndicator
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.ProgressIndicatorColors
@@ -20,11 +21,11 @@ import com.example.tilesamples.tiles.layout_tile.SIMPLE_LAYOUT
 import com.example.tilesamples.tiles.layout_tile.createTile
 
 val edgeContentLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
-    LayoutElementBuilders.Box.Builder()
+    Box.Builder()
         .setModifiers(
-            ModifiersBuilders.Modifiers.Builder()
+            Modifiers.Builder()
                 .setClickable(
-                    ModifiersBuilders.Clickable.Builder()
+                    Clickable.Builder()
                         .setId(SIMPLE_LAYOUT)
                         .setOnClick(ActionBuilders.LoadAction.Builder().build())
                         .build()

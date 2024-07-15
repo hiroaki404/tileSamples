@@ -3,7 +3,7 @@ package com.example.tilesamples.tiles.renderer.use_minimum_renderer
 import android.content.Context
 import androidx.wear.protolayout.ColorBuilders.argb
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
-import androidx.wear.protolayout.LayoutElementBuilders
+import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
@@ -22,11 +22,11 @@ class SimpleTileRenderer(context: Context): SingleTileLayoutRenderer<SimpleTileS
     override fun renderTile(
         state: SimpleTileState,
         deviceParameters: DeviceParameters
-    ): LayoutElementBuilders.LayoutElement {
+    ): LayoutElement {
         return tileLayout(state, deviceParameters)
     }
 
-    private fun tileLayout(state: SimpleTileState, deviceParameters: DeviceParameters): LayoutElementBuilders.LayoutElement {
+    private fun tileLayout(state: SimpleTileState, deviceParameters: DeviceParameters): LayoutElement {
         return PrimaryLayout.Builder(deviceParameters)
             .setContent(
                 Text.Builder(context, state.text)
