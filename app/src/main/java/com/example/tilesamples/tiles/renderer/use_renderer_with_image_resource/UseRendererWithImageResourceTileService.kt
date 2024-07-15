@@ -1,8 +1,9 @@
 package com.example.tilesamples.tiles.renderer.use_renderer_with_image_resource
 
 import android.graphics.drawable.BitmapDrawable
-import androidx.wear.protolayout.ResourceBuilders
-import androidx.wear.tiles.RequestBuilders
+import androidx.wear.protolayout.ResourceBuilders.Resources
+import androidx.wear.tiles.RequestBuilders.ResourcesRequest
+import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
 import coil.Coil
 import coil.request.ImageRequest
@@ -24,8 +25,8 @@ class UseRendererWithImageResourceTileService: SuspendingTileService() {
     }
 
     override suspend fun resourcesRequest(
-        requestParams: RequestBuilders.ResourcesRequest
-    ): ResourceBuilders.Resources {
+        requestParams: ResourcesRequest
+    ): Resources {
         val image = coroutineScope {
             async {
                 Coil.imageLoader(this@UseRendererWithImageResourceTileService).run {
@@ -46,7 +47,7 @@ class UseRendererWithImageResourceTileService: SuspendingTileService() {
     }
 
     override suspend fun tileRequest(
-        requestParams: RequestBuilders.TileRequest
+        requestParams: TileRequest
     ): TileBuilders.Tile {
         val state = SimpleTileState("hello world")
         return renderer.renderTimeline(state, requestParams)

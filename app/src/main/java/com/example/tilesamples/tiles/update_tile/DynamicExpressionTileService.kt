@@ -5,14 +5,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.wear.protolayout.LayoutElementBuilders
-import androidx.wear.protolayout.ResourceBuilders
-import androidx.wear.protolayout.TimelineBuilders
+import androidx.wear.protolayout.LayoutElementBuilders.Layout
+import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
+import androidx.wear.protolayout.ResourceBuilders.Resources
+import androidx.wear.protolayout.TimelineBuilders.Timeline
+import androidx.wear.protolayout.TimelineBuilders.TimelineEntry
 import androidx.wear.protolayout.TypeBuilders
 import androidx.wear.protolayout.expression.DynamicBuilders.DynamicInstant
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
-import androidx.wear.tiles.RequestBuilders
+import androidx.wear.tiles.RequestBuilders.ResourcesRequest
+import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.LayoutRootPreview
@@ -26,17 +29,17 @@ private const val RESOURCES_VERSION = "0"
 class DynamicExpressionTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
-        requestParams: RequestBuilders.ResourcesRequest
-    ): ResourceBuilders.Resources {
-        return ResourceBuilders.Resources.Builder().setVersion(RESOURCES_VERSION).build()
+        requestParams: ResourcesRequest
+    ): Resources {
+        return Resources.Builder().setVersion(RESOURCES_VERSION).build()
     }
 
     override suspend fun tileRequest(
-        requestParams: RequestBuilders.TileRequest
+        requestParams: TileRequest
     ): TileBuilders.Tile {
-        val singleTileTimeline = TimelineBuilders.Timeline.Builder().addTimelineEntry(
-            TimelineBuilders.TimelineEntry.Builder().setLayout(
-                LayoutElementBuilders.Layout.Builder().setRoot(tileLayout(this)).build()
+        val singleTileTimeline = Timeline.Builder().addTimelineEntry(
+            TimelineEntry.Builder().setLayout(
+                Layout.Builder().setRoot(tileLayout(this)).build()
             ).build()
         ).build()
 
@@ -45,7 +48,7 @@ class DynamicExpressionTileService : SuspendingTileService() {
     }
 }
 
-private fun tileLayout(context: Context): LayoutElementBuilders.LayoutElement {
+private fun tileLayout(context: Context): LayoutElement {
     val time = DynamicInstant.withSecondsPrecision(Instant.EPOCH)
         .durationUntil(DynamicInstant.platformTimeWithSecondsPrecision())
         .secondsPart

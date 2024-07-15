@@ -9,14 +9,15 @@ import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.DimensionBuilders.dp
 import androidx.wear.protolayout.LayoutElementBuilders.Image
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
-import androidx.wear.protolayout.ResourceBuilders
+import androidx.wear.protolayout.ResourceBuilders.IMAGE_FORMAT_RGB_565
 import androidx.wear.protolayout.ResourceBuilders.ImageResource
+import androidx.wear.protolayout.ResourceBuilders.InlineImageResource
 import androidx.wear.protolayout.ResourceBuilders.Resources
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
-import androidx.wear.tiles.RequestBuilders
+import androidx.wear.tiles.RequestBuilders.ResourcesRequest
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
@@ -75,11 +76,11 @@ fun bitmapToImageResource(bitmap: Bitmap): ImageResource {
     val bytes: ByteArray = byteBuffer.array()
 
     return ImageResource.Builder().setInlineResource(
-        ResourceBuilders.InlineImageResource.Builder()
+        InlineImageResource.Builder()
             .setData(bytes)
             .setWidthPx(bitmap.width)
             .setHeightPx(bitmap.height)
-            .setFormat(ResourceBuilders.IMAGE_FORMAT_RGB_565)
+            .setFormat(IMAGE_FORMAT_RGB_565)
             .build()
     )
         .build()
@@ -101,7 +102,7 @@ fun simpleTileRendererPreview(context: Context): TilePreviewData {
     }
 }
 
-internal fun resources(fn: Resources.Builder.() -> Unit): (RequestBuilders.ResourcesRequest) -> Resources =
+internal fun resources(fn: Resources.Builder.() -> Unit): (ResourcesRequest) -> Resources =
     {
         Resources.Builder().setVersion(it.version).apply(fn).build()
     }

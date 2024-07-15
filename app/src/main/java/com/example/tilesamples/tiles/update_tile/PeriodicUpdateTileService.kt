@@ -6,16 +6,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.protolayout.ColorBuilders.argb
-import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.LayoutElementBuilders.Column
+import androidx.wear.protolayout.LayoutElementBuilders.Layout
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
-import androidx.wear.protolayout.ResourceBuilders
-import androidx.wear.protolayout.TimelineBuilders
+import androidx.wear.protolayout.ResourceBuilders.Resources
+import androidx.wear.protolayout.TimelineBuilders.TimeInterval
+import androidx.wear.protolayout.TimelineBuilders.Timeline
+import androidx.wear.protolayout.TimelineBuilders.TimelineEntry.Builder
 import androidx.wear.protolayout.material.Colors
 import androidx.wear.protolayout.material.Text
 import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
-import androidx.wear.tiles.RequestBuilders
+import androidx.wear.tiles.RequestBuilders.ResourcesRequest
+import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.compose.tools.LayoutRootPreview
@@ -28,30 +31,30 @@ private const val RESOURCES_VERSION = "0"
 class PeriodicUpdateTileService : SuspendingTileService() {
 
     override suspend fun resourcesRequest(
-        requestParams: RequestBuilders.ResourcesRequest
-    ): ResourceBuilders.Resources {
-        return ResourceBuilders.Resources.Builder().setVersion(RESOURCES_VERSION).build()
+        requestParams: ResourcesRequest
+    ): Resources {
+        return Resources.Builder().setVersion(RESOURCES_VERSION).build()
     }
 
     override suspend fun tileRequest(
-        requestParams: RequestBuilders.TileRequest
+        requestParams: TileRequest
     ): TileBuilders.Tile {
         val currentTime = System.currentTimeMillis()
 
         // you should place at least one timeline entry with no validity
-        val tileTimeline = TimelineBuilders.Timeline.Builder().addTimelineEntry(
-            TimelineBuilders.TimelineEntry.Builder().setLayout(
+        val tileTimeline = Timeline.Builder().addTimelineEntry(
+            Builder().setLayout(
                 dummyLayout(this)
             ).build()
         )
 
         (0..10).forEach { index ->
             tileTimeline.addTimelineEntry(
-                TimelineBuilders.TimelineEntry.Builder().setLayout(
+                Builder().setLayout(
                     tileLayout(this, index)
                 ).setValidity(
                     // Validity settings should be spaced at least one minute apart. Settings with intervals of less than one minute will be ignored by the system.
-                    TimelineBuilders.TimeInterval.Builder()
+                    TimeInterval.Builder()
                         .setEndMillis(currentTime + (index + 1) * 60 * 1000)
                         .build()
                 ).build()
@@ -63,8 +66,8 @@ class PeriodicUpdateTileService : SuspendingTileService() {
     }
 }
 
-private fun dummyLayout(context: Context): LayoutElementBuilders.Layout {
-    return LayoutElementBuilders.Layout.Builder()
+private fun dummyLayout(context: Context): Layout {
+    return Layout.Builder()
         .setRoot(
             PrimaryLayout.Builder(buildDeviceParameters(context.resources))
                 .setContent(
@@ -78,8 +81,8 @@ private fun dummyLayout(context: Context): LayoutElementBuilders.Layout {
 }
 
 
-private fun tileLayout(context: Context, lineSize: Int? = null): LayoutElementBuilders.Layout {
-    return LayoutElementBuilders.Layout.Builder().setRoot(
+private fun tileLayout(context: Context, lineSize: Int? = null): Layout {
+    return Layout.Builder().setRoot(
         tileLayoutElement(context, lineSize)
     ).build()
 }
