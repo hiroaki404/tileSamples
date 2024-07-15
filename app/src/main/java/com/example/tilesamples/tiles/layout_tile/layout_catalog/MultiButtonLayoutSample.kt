@@ -13,7 +13,7 @@ import androidx.wear.protolayout.material.layouts.MultiButtonLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
 import com.example.tilesamples.tiles.layout_tile.MERGED_LAYOUT
-import com.example.tilesamples.tiles.layout_tile.createTile
+import com.example.tilesamples.tiles.util.createTile
 
 val multiButtonLayout: (Context, DeviceParameters) -> LayoutElement =
     { context, _ ->

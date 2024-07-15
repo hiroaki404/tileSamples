@@ -16,7 +16,7 @@ import androidx.wear.protolayout.material.layouts.MultiSlotLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
 import com.example.tilesamples.tiles.layout_tile.MULTI_BUTTON_LAYOUT
-import com.example.tilesamples.tiles.layout_tile.createTile
+import com.example.tilesamples.tiles.util.createTile
 
 val multiSlotLayout: (Context, DeviceParameters) -> LayoutElement = { context, _ ->
     Box.Builder()
