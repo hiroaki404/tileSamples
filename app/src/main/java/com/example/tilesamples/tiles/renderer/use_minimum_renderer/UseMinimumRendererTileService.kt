@@ -3,7 +3,7 @@ package com.example.tilesamples.tiles.renderer.use_minimum_renderer
 import androidx.wear.protolayout.ResourceBuilders.Resources
 import androidx.wear.tiles.RequestBuilders.ResourcesRequest
 import androidx.wear.tiles.RequestBuilders.TileRequest
-import androidx.wear.tiles.TileBuilders
+import androidx.wear.tiles.TileBuilders.Tile
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 
@@ -24,7 +24,7 @@ class UseMinimumRendererTileService : SuspendingTileService() {
 
     override suspend fun tileRequest(
         requestParams: TileRequest
-    ): TileBuilders.Tile {
+    ): Tile {
         val state = SimpleTileState("hello world")
         return renderer.renderTimeline(state, requestParams)
     }
