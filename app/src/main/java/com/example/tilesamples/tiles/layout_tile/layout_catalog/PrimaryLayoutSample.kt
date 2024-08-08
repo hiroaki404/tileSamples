@@ -74,10 +74,8 @@ val simpleLayout: (Context, DeviceParameters) -> LayoutElement = { context, devi
 }
 
 @Preview
-fun simpleLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        TilePreviewHelper.singleTimelineEntryTileBuilder(
-            simpleLayout(context, tileRequest.deviceConfiguration)
-        ).build()
-    }
+fun simpleLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        simpleLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

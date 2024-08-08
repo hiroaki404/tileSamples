@@ -58,10 +58,8 @@ val mergedLayout: (Context, DeviceParameters) -> LayoutElement = { context, devi
 }
 
 @Preview
-fun mergedLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        TilePreviewHelper.singleTimelineEntryTileBuilder(
-            mergedLayout(context, tileRequest.deviceConfiguration)
-        ).build()
-    }
+fun mergedLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        mergedLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }
