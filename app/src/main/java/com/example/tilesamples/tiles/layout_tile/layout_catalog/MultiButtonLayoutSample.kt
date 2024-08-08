@@ -12,8 +12,8 @@ import androidx.wear.protolayout.material.Button
 import androidx.wear.protolayout.material.layouts.MultiButtonLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.example.tilesamples.tiles.layout_tile.MERGED_LAYOUT
-import com.example.tilesamples.tiles.util.createTile
 
 val multiButtonLayout: (Context, DeviceParameters) -> LayoutElement =
     { context, _ ->
@@ -48,8 +48,8 @@ val multiButtonLayout: (Context, DeviceParameters) -> LayoutElement =
     }
 
 @Preview
-fun multiButtonLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, multiButtonLayout)
-    }
+fun multiButtonLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        multiButtonLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

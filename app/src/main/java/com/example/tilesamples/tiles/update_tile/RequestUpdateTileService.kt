@@ -19,7 +19,7 @@ import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
-import com.example.tilesamples.tiles.util.createTile
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 import kotlinx.coroutines.GlobalScope
@@ -62,7 +62,8 @@ class RequestUpdateTileService : SuspendingTileService() {
         Log.d("RefreshTileService", "tileRequest")
         val singleTileTimeline = Timeline.Builder().addTimelineEntry(
             TimelineEntry.Builder().setLayout(
-                Layout.Builder().setRoot(tileLayout(this, requestParams.deviceConfiguration)).build()
+                Layout.Builder().setRoot(tileLayout(this, requestParams.deviceConfiguration))
+                    .build()
             ).build()
         ).build()
 
@@ -88,8 +89,8 @@ private fun tileLayout(context: Context, deviceConfiguration: DeviceParameters):
 }
 
 @Preview
-private fun tilePreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, ::tileLayout)
-    }
+private fun tilePreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        tileLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

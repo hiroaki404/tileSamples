@@ -1,10 +1,7 @@
 package com.example.tilesamples.tiles.update_tile
 
 import android.content.Context
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.LayoutElementBuilders.Layout
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ResourceBuilders.Resources
@@ -17,9 +14,10 @@ import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.RequestBuilders.ResourcesRequest
 import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
+import androidx.wear.tiles.tooling.preview.Preview
+import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.tools.LayoutRootPreview
-import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.SuspendingTileService
 import java.time.Instant
 
@@ -39,7 +37,7 @@ class DynamicExpressionTileService : SuspendingTileService() {
     ): TileBuilders.Tile {
         val singleTileTimeline = Timeline.Builder().addTimelineEntry(
             TimelineEntry.Builder().setLayout(
-                Layout.Builder().setRoot(tileLayout(this)).build()
+                Layout.Builder().setRoot(tileLayout(this, requestParams.deviceConfiguration)).build()
             ).build()
         ).build()
 
@@ -48,13 +46,13 @@ class DynamicExpressionTileService : SuspendingTileService() {
     }
 }
 
-private fun tileLayout(context: Context): LayoutElement {
+private fun tileLayout(context: Context, deviceConfiguration: DeviceParameters): LayoutElement {
     val time = DynamicInstant.withSecondsPrecision(Instant.EPOCH)
         .durationUntil(DynamicInstant.platformTimeWithSecondsPrecision())
         .secondsPart
         .asFloat()
 
-    return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
+    return PrimaryLayout.Builder(deviceConfiguration)
         .setContent(
             Text.Builder(
                 context,
@@ -67,13 +65,9 @@ private fun tileLayout(context: Context): LayoutElement {
         ).build()
 }
 
-@Preview(
-    device = Devices.WEAR_OS_SMALL_ROUND,
-    showSystemUi = true,
-    backgroundColor = 0xff000000,
-    showBackground = true
-)
-@Composable
-fun DynamicExpressionTilePreview() {
-    LayoutRootPreview(root = tileLayout(LocalContext.current))
+@Preview
+private fun dynamicExpressionTilePreview(context: Context): TilePreviewData = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        tileLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

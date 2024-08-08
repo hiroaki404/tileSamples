@@ -15,8 +15,8 @@ import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.example.tilesamples.tiles.layout_tile.EDGE_CONTENT_LAYOUT
-import com.example.tilesamples.tiles.util.createTile
 
 val mergedLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
     Box.Builder()
@@ -58,8 +58,8 @@ val mergedLayout: (Context, DeviceParameters) -> LayoutElement = { context, devi
 }
 
 @Preview
-fun mergedLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, mergedLayout)
-    }
+fun mergedLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        mergedLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }
