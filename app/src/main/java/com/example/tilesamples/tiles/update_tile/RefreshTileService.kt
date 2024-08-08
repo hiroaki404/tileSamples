@@ -18,7 +18,7 @@ import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
-import com.example.tilesamples.tiles.util.createTile
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
 import com.google.android.horologist.tiles.SuspendingTileService
 import java.util.Calendar
@@ -73,6 +73,8 @@ private fun tileLayout(context: Context, deviceConfiguration: DeviceParameters):
 @Preview
 private fun tilePreview(context: Context): TilePreviewData {
     return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, ::tileLayout)
+        TilePreviewHelper.singleTimelineEntryTileBuilder(
+            tileLayout(context, tileRequest.deviceConfiguration)
+        ).build()
     }
 }

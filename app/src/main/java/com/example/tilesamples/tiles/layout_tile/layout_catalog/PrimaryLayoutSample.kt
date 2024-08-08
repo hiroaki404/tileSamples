@@ -17,8 +17,8 @@ import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.example.tilesamples.tiles.layout_tile.MULTI_SLOT_LAYOUT
-import com.example.tilesamples.tiles.util.createTile
 
 val simpleLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
     Box.Builder()
@@ -76,6 +76,8 @@ val simpleLayout: (Context, DeviceParameters) -> LayoutElement = { context, devi
 @Preview
 fun simpleLayoutPreview(context: Context): TilePreviewData {
     return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, simpleLayout)
+        TilePreviewHelper.singleTimelineEntryTileBuilder(
+            simpleLayout(context, tileRequest.deviceConfiguration)
+        ).build()
     }
 }
