@@ -49,10 +49,8 @@ val multiSlotLayout: (Context, DeviceParameters) -> LayoutElement = { context, _
 }
 
 @Preview
-fun multiSlotLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        TilePreviewHelper.singleTimelineEntryTileBuilder(
-            multiSlotLayout(context, tileRequest.deviceConfiguration)
-        ).build()
-    }
+fun multiSlotLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        multiSlotLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

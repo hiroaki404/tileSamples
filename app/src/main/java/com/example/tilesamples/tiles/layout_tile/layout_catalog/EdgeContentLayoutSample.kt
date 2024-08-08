@@ -74,10 +74,8 @@ val edgeContentLayout: (Context, DeviceParameters) -> LayoutElement = { context,
 }
 
 @Preview
-fun edgeContentPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        TilePreviewHelper.singleTimelineEntryTileBuilder(
-            edgeContentLayout(context, tileRequest.deviceConfiguration)
-        ).build()
-    }
+fun edgeContentPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        edgeContentLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }

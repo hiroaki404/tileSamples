@@ -48,10 +48,8 @@ val multiButtonLayout: (Context, DeviceParameters) -> LayoutElement =
     }
 
 @Preview
-fun multiButtonLayoutPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        TilePreviewHelper.singleTimelineEntryTileBuilder(
-            multiButtonLayout(context, tileRequest.deviceConfiguration)
-        ).build()
-    }
+fun multiButtonLayoutPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        multiButtonLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }
