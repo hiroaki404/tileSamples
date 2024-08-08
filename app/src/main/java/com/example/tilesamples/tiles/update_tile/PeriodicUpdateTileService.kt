@@ -1,11 +1,8 @@
 package com.example.tilesamples.tiles.update_tile
 
 import android.content.Context
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.protolayout.ColorBuilders.argb
+import androidx.wear.protolayout.DeviceParametersBuilders.*
 import androidx.wear.protolayout.LayoutElementBuilders.Column
 import androidx.wear.protolayout.LayoutElementBuilders.Layout
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
@@ -20,9 +17,10 @@ import androidx.wear.protolayout.material.layouts.PrimaryLayout
 import androidx.wear.tiles.RequestBuilders.ResourcesRequest
 import androidx.wear.tiles.RequestBuilders.TileRequest
 import androidx.wear.tiles.TileBuilders
+import androidx.wear.tiles.tooling.preview.Preview
+import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.google.android.horologist.annotations.ExperimentalHorologistApi
-import com.google.android.horologist.compose.tools.LayoutRootPreview
-import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.SuspendingTileService
 
 private const val RESOURCES_VERSION = "0"
@@ -44,14 +42,14 @@ class PeriodicUpdateTileService : SuspendingTileService() {
         // you should place at least one timeline entry with no validity
         val tileTimeline = Timeline.Builder().addTimelineEntry(
             Builder().setLayout(
-                dummyLayout(this)
+                dummyLayout(this, requestParams.deviceConfiguration)
             ).build()
         )
 
         (0..10).forEach { index ->
             tileTimeline.addTimelineEntry(
                 Builder().setLayout(
-                    tileLayout(this, index)
+                    tileLayout(this, index, requestParams.deviceConfiguration)
                 ).setValidity(
                     // Validity settings should be spaced at least one minute apart. Settings with intervals of less than one minute will be ignored by the system.
                     TimeInterval.Builder()
@@ -66,10 +64,10 @@ class PeriodicUpdateTileService : SuspendingTileService() {
     }
 }
 
-private fun dummyLayout(context: Context): Layout {
+private fun dummyLayout(context: Context, deviceConfiguration: DeviceParameters): Layout {
     return Layout.Builder()
         .setRoot(
-            PrimaryLayout.Builder(buildDeviceParameters(context.resources))
+            PrimaryLayout.Builder(deviceConfiguration)
                 .setContent(
                     Text.Builder(context, "no entry")
                         .setColor(argb(Colors.DEFAULT.onSurface))
@@ -81,15 +79,20 @@ private fun dummyLayout(context: Context): Layout {
 }
 
 
-private fun tileLayout(context: Context, lineSize: Int? = null): Layout {
+private fun tileLayout(
+    context: Context,
+    lineSize: Int? = null,
+    deviceConfiguration: DeviceParameters
+): Layout {
     return Layout.Builder().setRoot(
-        tileLayoutElement(context, lineSize)
+        tileLayoutElement(context, lineSize, deviceConfiguration)
     ).build()
 }
 
 private fun tileLayoutElement(
     context: Context,
-    lineSize: Int? = null
+    lineSize: Int? = null,
+    deviceConfiguration: DeviceParameters
 ): LayoutElement {
     val layoutBuilder = Column.Builder()
     layoutBuilder.addContent(
@@ -108,18 +111,14 @@ private fun tileLayoutElement(
         )
     }
 
-    return PrimaryLayout.Builder(buildDeviceParameters(context.resources))
+    return PrimaryLayout.Builder(deviceConfiguration)
         .setContent(layoutBuilder.build())
         .build()
 }
 
-@Preview(
-    device = Devices.WEAR_OS_SMALL_ROUND,
-    showSystemUi = true,
-    backgroundColor = 0xff000000,
-    showBackground = true
-)
-@Composable
-fun PeriodicUpdateTilePreview() {
-    LayoutRootPreview(root = tileLayoutElement(LocalContext.current))
+@Preview
+fun periodicUpdateTilePreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        tileLayout(context, 3, tileRequest.deviceConfiguration)
+    ).build()
 }
