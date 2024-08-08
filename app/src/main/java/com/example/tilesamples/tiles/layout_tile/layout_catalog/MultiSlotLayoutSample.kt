@@ -15,8 +15,8 @@ import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.MultiSlotLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.example.tilesamples.tiles.layout_tile.MULTI_BUTTON_LAYOUT
-import com.example.tilesamples.tiles.util.createTile
 
 val multiSlotLayout: (Context, DeviceParameters) -> LayoutElement = { context, _ ->
     Box.Builder()
@@ -51,6 +51,8 @@ val multiSlotLayout: (Context, DeviceParameters) -> LayoutElement = { context, _
 @Preview
 fun multiSlotLayoutPreview(context: Context): TilePreviewData {
     return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, multiSlotLayout)
+        TilePreviewHelper.singleTimelineEntryTileBuilder(
+            multiSlotLayout(context, tileRequest.deviceConfiguration)
+        ).build()
     }
 }
