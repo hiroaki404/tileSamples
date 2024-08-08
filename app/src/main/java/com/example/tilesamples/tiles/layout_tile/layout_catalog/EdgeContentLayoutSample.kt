@@ -17,8 +17,8 @@ import androidx.wear.protolayout.material.Typography
 import androidx.wear.protolayout.material.layouts.EdgeContentLayout
 import androidx.wear.tiles.tooling.preview.Preview
 import androidx.wear.tiles.tooling.preview.TilePreviewData
+import androidx.wear.tiles.tooling.preview.TilePreviewHelper
 import com.example.tilesamples.tiles.layout_tile.SIMPLE_LAYOUT
-import com.example.tilesamples.tiles.util.createTile
 
 val edgeContentLayout: (Context, DeviceParameters) -> LayoutElement = { context, deviceParameters ->
     Box.Builder()
@@ -74,8 +74,8 @@ val edgeContentLayout: (Context, DeviceParameters) -> LayoutElement = { context,
 }
 
 @Preview
-fun edgeContentPreview(context: Context): TilePreviewData {
-    return TilePreviewData { tileRequest ->
-        createTile(context, tileRequest.deviceConfiguration, edgeContentLayout)
-    }
+fun edgeContentPreview(context: Context) = TilePreviewData { tileRequest ->
+    TilePreviewHelper.singleTimelineEntryTileBuilder(
+        edgeContentLayout(context, tileRequest.deviceConfiguration)
+    ).build()
 }
