@@ -1,6 +1,9 @@
 # TileSamples
 This repository provides sample code demonstrating how to update tiles and create tile UIs.
 
+Note:
+I performed a force push on December 6, 2025. Please be aware if you pulled before then.
+
 ## TileService
 Note: Tiles will not update after building and running the app. You need to remove and re-add the tile to see the updates.
 
